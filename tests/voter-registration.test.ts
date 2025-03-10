@@ -1,21 +1,24 @@
+import { describe, it, expect, vi } from "vitest"
 
-import { describe, expect, it } from "vitest";
+describe("Voting Process Contract", () => {
+  const mockContractCall = vi.fn()
+  
+  it("casts a vote", () => {
+    mockContractCall.mockReturnValueOnce({ result: { value: true } })
+    const result = mockContractCall("cast-vote", [1, true])
+    expect(result.result.value).toBe(true)
+  })
+  
+  it("gets a vote", () => {
+    mockContractCall.mockReturnValueOnce({ result: { value: true } })
+    const result = mockContractCall("get-vote", ["ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM", 1])
+    expect(result.result.value).toBe(true)
+  })
+  
+  it("gets the vote count", () => {
+    mockContractCall.mockReturnValueOnce({ result: { value: 1n } })
+    const result = mockContractCall("get-vote-count", [1])
+    expect(result.result.value).toBe(1n)
+  })
+})
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
-
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
-
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
-  });
-
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
-});

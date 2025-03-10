@@ -1,30 +1,17 @@
+;; Result Tabulation Contract
 
-;; title: result-tabulation
-;; version:
-;; summary:
-;; description:
+;; Data Variables
+(define-map results { proposal-id: uint } { approved: bool, votes-for: uint, votes-against: uint })
 
-;; traits
-;;
+;; Public Functions
+(define-public (tabulate-result (proposal-id uint) (votes-for uint) (votes-against uint))
+  (let ((approved (> votes-for votes-against)))
+    (map-set results
+      { proposal-id: proposal-id }
+      { approved: approved, votes-for: votes-for, votes-against: votes-against })
+    (ok approved)))
 
-;; token definitions
-;;
-
-;; constants
-;;
-
-;; data vars
-;;
-
-;; data maps
-;;
-
-;; public functions
-;;
-
-;; read only functions
-;;
-
-;; private functions
-;;
+;; Read-only Functions
+(define-read-only (get-result (proposal-id uint))
+  (map-get? results { proposal-id: proposal-id }))
 

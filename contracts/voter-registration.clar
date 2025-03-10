@@ -1,30 +1,22 @@
+;; Voter Registration Contract
 
-;; title: voter-registration
-;; version:
-;; summary:
-;; description:
+;; Data Variables
+(define-map voters principal bool)
+(define-data-var voter-count uint u0)
 
-;; traits
-;;
+;; Public Functions
+(define-public (register-voter (voter principal))
+  (if (is-registered voter)
+    (err u1) ;; Already registered
+    (begin
+      (map-set voters voter true)
+      (var-set voter-count (+ (var-get voter-count) u1))
+      (ok true))))
 
-;; token definitions
-;;
+;; Read-only Functions
+(define-read-only (is-registered (voter principal))
+  (default-to false (map-get? voters voter)))
 
-;; constants
-;;
-
-;; data vars
-;;
-
-;; data maps
-;;
-
-;; public functions
-;;
-
-;; read only functions
-;;
-
-;; private functions
-;;
+(define-read-only (get-voter-count)
+  (var-get voter-count))
 

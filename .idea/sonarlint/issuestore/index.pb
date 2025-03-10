@@ -5,3 +5,7 @@ Q
 !contracts/voter-registration.clar,c/0/c030bd2ca66b661e181a19a22fc8c0a7c1fc0a74
 P
  tests/voter-registration.test.ts,3/b/3b86ee71932407461fee104d0c1c5ddeb402c8f1
+R
+"contracts/proposal-submission.clar,2/3/234c95e54b879a293f2d6ef91ce26271ff33cee0
+Q
+!tests/proposal-submission.test.ts,5/b/5b143b9f3737bf98a537c725e441fe09efc27e3a
